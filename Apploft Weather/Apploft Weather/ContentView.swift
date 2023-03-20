@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  weatherapp
+//  Apploft Weather
 //
 //  Created by Atakan Özdemir on 20.03.23.
 //
