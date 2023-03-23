@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		902A8C6829CC76FC00A35F70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902A8C6A29CC76FC00A35F70 /* Localizable.strings */; };
+		902A8C6D29CC9E6300A35F70 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C6C29CC9E6300A35F70 /* BackgroundView.swift */; };
+		902A8C7029CCA75200A35F70 /* TextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C6F29CCA75200A35F70 /* TextViewModel.swift */; };
+		902A8C7229CCA7AC00A35F70 /* WeatherColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7129CCA7AC00A35F70 /* WeatherColorEnum.swift */; };
+		902A8C7429CCA7F000A35F70 /* WeatherBgEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7329CCA7F000A35F70 /* WeatherBgEnum.swift */; };
+		902A8C7629CCAA9C00A35F70 /* BackgroundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7529CCAA9C00A35F70 /* BackgroundViewModel.swift */; };
+		902A8C7829CCB08500A35F70 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7729CCB08500A35F70 /* TextView.swift */; };
 		907DA41129C8A33300E39F52 /* Apploft_WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */; };
 		907DA41329C8A33300E39F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41229C8A33300E39F52 /* ContentView.swift */; };
 		907DA41529C8A33400E39F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907DA41429C8A33400E39F52 /* Assets.xcassets */; };
@@ -17,6 +23,12 @@
 /* Begin PBXFileReference section */
 		902A8C6929CC76FC00A35F70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		902A8C6B29CC770300A35F70 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		902A8C6C29CC9E6300A35F70 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		902A8C6F29CCA75200A35F70 /* TextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewModel.swift; sourceTree = "<group>"; };
+		902A8C7129CCA7AC00A35F70 /* WeatherColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherColorEnum.swift; sourceTree = "<group>"; };
+		902A8C7329CCA7F000A35F70 /* WeatherBgEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBgEnum.swift; sourceTree = "<group>"; };
+		902A8C7529CCAA9C00A35F70 /* BackgroundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewModel.swift; sourceTree = "<group>"; };
+		902A8C7729CCB08500A35F70 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		907DA40D29C8A33300E39F52 /* Apploft Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apploft Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apploft_WeatherApp.swift; sourceTree = "<group>"; };
 		907DA41229C8A33300E39F52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		902A8C6E29CCA71700A35F70 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				902A8C7129CCA7AC00A35F70 /* WeatherColorEnum.swift */,
+				902A8C7329CCA7F000A35F70 /* WeatherBgEnum.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		907DA40429C8A33300E39F52 = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +78,8 @@
 			children = (
 				907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */,
 				90E2CEC429C9E8ED00E052DB /* View */,
-				90E2CEC529C9E90000E052DB /* Model */,
+				90E2CEC529C9E90000E052DB /* ViewModel */,
+				902A8C6E29CCA71700A35F70 /* Enums */,
 				907DA41429C8A33400E39F52 /* Assets.xcassets */,
 				907DA41629C8A33400E39F52 /* Preview Content */,
 			);
@@ -76,15 +98,19 @@
 			isa = PBXGroup;
 			children = (
 				907DA41229C8A33300E39F52 /* ContentView.swift */,
+				902A8C6C29CC9E6300A35F70 /* BackgroundView.swift */,
+				902A8C7729CCB08500A35F70 /* TextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		90E2CEC529C9E90000E052DB /* Model */ = {
+		90E2CEC529C9E90000E052DB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				902A8C6F29CCA75200A35F70 /* TextViewModel.swift */,
+				902A8C7529CCAA9C00A35F70 /* BackgroundViewModel.swift */,
 			);
-			path = Model;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +185,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				902A8C7029CCA75200A35F70 /* TextViewModel.swift in Sources */,
+				902A8C7829CCB08500A35F70 /* TextView.swift in Sources */,
+				902A8C7229CCA7AC00A35F70 /* WeatherColorEnum.swift in Sources */,
+				902A8C6D29CC9E6300A35F70 /* BackgroundView.swift in Sources */,
 				907DA41329C8A33300E39F52 /* ContentView.swift in Sources */,
 				907DA41129C8A33300E39F52 /* Apploft_WeatherApp.swift in Sources */,
+				902A8C7629CCAA9C00A35F70 /* BackgroundViewModel.swift in Sources */,
+				902A8C7429CCA7F000A35F70 /* WeatherBgEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
