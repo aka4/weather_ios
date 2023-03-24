@@ -11,7 +11,7 @@ extension Image {
     enum WeatherImage: String {
         case thunder
         case rain
-        case sunnny
+        case sunny
         case snow
         case cloudy
     }
