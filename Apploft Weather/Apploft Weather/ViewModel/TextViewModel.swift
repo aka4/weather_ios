@@ -13,7 +13,7 @@ extension TextView {
         private var weathResp: WeatherResponse?
         private var geoResp: GeoResponse?
         
-        @Published var dayText = AttributedString(getDay(), attributes: .init()
+        @Published var dayText = AttributedString(getDay().uppercased(), attributes: .init()
             .font(.system(size: 30))
         )
         
@@ -56,11 +56,11 @@ extension TextView {
             weathResp = await WeatherAPI.requestWeather(lat: geoResp?.first!.lat ?? 0, lon: geoResp?.first!.lon ?? 0)
             //weathResp = await WeatherAPI.requestWeather(lat: 53.090, lon: 9.0)
             
-            weatherdesc = AttributedString(weathResp?.weather.first!.description ?? "Error", attributes: .init()
+            weatherdesc = AttributedString(weathResp?.weather.first!.description.uppercased() ?? "Error", attributes: .init()
                 .font(.system(size:20))
             )
             
-            cityT = AttributedString(weathResp?.name ?? "Error", attributes: .init()
+            cityT = AttributedString(weathResp?.name.uppercased() ?? "Error", attributes: .init()
                 .font(.system(size: 30, weight: .light))
             )
             
@@ -76,7 +76,7 @@ extension TextView {
                 .font(.system(size: 16))
             )
             
-            windDirection = AttributedString("Wind direction: \(weathResp?.wind.deg ?? 0)", attributes: .init()
+            windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: weathResp?.wind.deg ?? 0))", attributes: .init()
                 .font(.system(size: 16))
             )
         }

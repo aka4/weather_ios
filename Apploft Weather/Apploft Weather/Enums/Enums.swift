@@ -37,8 +37,16 @@ extension Color {
 
 
 
-public enum WindDirections: String, CaseIterable {
+public enum WindDirection: String, CaseIterable {
     case n, nne, ne, ene, e, ese, se, sse, s, ssw, sw, wsw, w, wnw, nw, nnw
+}
+
+extension WindDirection {
+    static func getDirection(deg: Int) -> String {
+        let arr = WindDirection.allCases
+        let index = Int((Double(deg)/22.5).rounded()) % arr.count
+        return arr[index].rawValue.uppercased()
+    }
 }
 
 
