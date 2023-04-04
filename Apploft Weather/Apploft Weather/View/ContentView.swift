@@ -12,7 +12,7 @@ struct ContentView: View {
         ZStack {
             BackgroundView()
             SquareView()
-                .padding(/*@START_MENU_TOKEN@*/.all, 30.0/*@END_MENU_TOKEN@*/) //hier oder in SquareView?
+                .padding(30)
         }
 
     }

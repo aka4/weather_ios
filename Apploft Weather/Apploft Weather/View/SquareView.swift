@@ -16,6 +16,7 @@ struct SquareView: View {
             )
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .frame(maxHeight: .infinity, alignment: .bottom)
+            .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 10)
             
     }
 }

@@ -8,66 +8,88 @@
 import SwiftUI
 
 extension TextView {
-    struct ViewModel {
-        let day: AttributedString
-        let weatherdesc: AttributedString
-        let city: AttributedString
+    class ViewModel: ObservableObject {
         
-        let temp: Double
-        let tempText: AttributedString
+        private var weathResp: WeatherResponse?
+        private var geoResp: GeoResponse?
         
-        let humidity: Int
-        let humidText: AttributedString
+        @Published var dayText = AttributedString(getDay(), attributes: .init()
+            .font(.system(size: 30))
+        )
         
-        let windSp: Double
-        let windSpText: AttributedString
+        @Published var weatherdesc = AttributedString("")
         
-        let windD: String
-        let windDText: AttributedString
+        @Published var cityT = AttributedString("")
         
-        init() {
-            day = AttributedString("TUESDAY", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
-                .font(.system(size: 30))
+        @Published var temp = AttributedString("")
+        
+        @Published var humidity = AttributedString("")
+        
+        @Published var windSpeed = AttributedString("")
+        
+        @Published var windDirection = AttributedString("")
+       
+        
+        func retrieveData() {
+            guard let weathUrl = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=53.551086&lon=9.993682&appid=2949250d0399e038f1e3ec0ccf6bc480&units=metric") else {
+                return
+            }
+            URLSession.shared.dataTask(with: weathUrl) { data, response, error in
+                let decoder = JSONDecoder()
+                if let dataB = data {
+                    do {
+                        self.weathResp = try decoder.decode(WeatherResponse.self, from: dataB)
+                    } catch {
+                        print(error.localizedDescription)
+                        print(self.weathResp ?? "Null")
+                    }
+                }
+            }
+            .resume()
+        }
+        
+        @MainActor func executeSearch(city: String) async {
+            geoResp = await WeatherAPI.requestCoordinates(city: city)
+            guard geoResp != nil else {
+                return
+            }
+            weathResp = await WeatherAPI.requestWeather(lat: geoResp?.first!.lat ?? 0, lon: geoResp?.first!.lon ?? 0)
+            //weathResp = await WeatherAPI.requestWeather(lat: 53.090, lon: 9.0)
+            
+            weatherdesc = AttributedString(weathResp?.weather.first!.description ?? "Error", attributes: .init()
+                .font(.system(size:20))
             )
             
-            weatherdesc = AttributedString("LIGHT RAIN", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
-                .font(.system(size: 20))
-            )
-            
-            city = AttributedString("LONDON", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
+            cityT = AttributedString(weathResp?.name ?? "Error", attributes: .init()
                 .font(.system(size: 30, weight: .light))
             )
             
-            temp = 20
-            
-            tempText = AttributedString("\(Int(temp))°", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
+            temp = AttributedString("\(Int(weathResp?.main.temp ?? 0))°", attributes: .init()
                 .font(.system(size: 100))
             )
             
-            humidity = 76
-            
-            humidText = AttributedString("Humidity: \(humidity)", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
+            humidity = AttributedString("Humidity: \(weathResp?.main.humidity ?? 0)", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windSp = 45.6
-            
-            windSpText = AttributedString("Wind speed: \(windSp)", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
+            windSpeed = AttributedString("Wind speed: \(String(format: "%.2f", weathResp?.wind.speed ?? 0))", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windD = "N" //logic needed for converting degree from API into String/Enum
-            
-            windDText = AttributedString("Wind direction: \(windD)", attributes: .init()
-                .foregroundColor(Color(weather: .sun))
+            windDirection = AttributedString("Wind direction: \(weathResp?.wind.deg ?? 0)", attributes: .init()
                 .font(.system(size: 16))
             )
         }
+        
+        static func getDay() -> String {
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en")
+            dateFormatter.dateFormat = "EEEE"
+            let dayOfTheWeekString = dateFormatter.string(from: date)
+            return dayOfTheWeekString
+        }
+        
+        
     }
 }

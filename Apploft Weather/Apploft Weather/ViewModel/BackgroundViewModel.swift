@@ -9,7 +9,14 @@ import SwiftUI
 
 extension BackgroundView {
     struct ViewModel {
-        let weatherCondition = Image(weather: .sunny)
-            .resizable()
+        let weatherCondition: Image
+        
+        init(weatherCond: WeatherImage) {
+            weatherCondition = Image(weather: weatherCond)
+        }
     }
+}
+
+extension BackgroundView {
+    static let Mock = ViewModel(weatherCond: .thunder)
 }

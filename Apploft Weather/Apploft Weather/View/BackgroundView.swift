@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct BackgroundView: View {
-    let viewModel = ViewModel()
+    let viewModel = Mock
     var body: some View {
         viewModel.weatherCondition
+            .resizable()
+            .ignoresSafeArea()
+            .scaledToFill()
     }
 }
 

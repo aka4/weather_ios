@@ -8,38 +8,41 @@
 import SwiftUI
 
 struct TextView: View {
-    let viewModel = ViewModel()
+    @ObservedObject var viewModel = ViewModel()
     var body: some View {
         VStack{
             HStack(alignment: .top){
                 VStack(alignment: .leading){
-                    Text(viewModel.day)
+                    Text(viewModel.dayText)
                     Text(viewModel.weatherdesc)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(viewModel.city)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                Text(viewModel.cityT)
             }
             .frame(maxHeight: .infinity, alignment: .top)
             
-            
-            Text(viewModel.tempText)
+            Text(viewModel.temp)
                 .frame(maxHeight: .infinity, alignment: .center)
             
             HStack{
                 VStack(alignment: .leading){
-                    Text(viewModel.humidText)
-                    Text(viewModel.windSpText)
-                    Text(viewModel.windDText)
+                    Text(viewModel.humidity)
+                    Text(viewModel.windSpeed)
+                    Text(viewModel.windDirection)
                 }
                 .frame(maxWidth:.infinity, alignment: .trailing)
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
             
         }
-        //.frame(maxHeight: .infinity)
-        .padding(.all)
+        .padding()
+        .foregroundColor(Color(weather: .sun))
+        .onAppear {
+            Task {
+                await viewModel.executeSearch(city: "Hamburg")
+            }
+        }
     }
 }
 
