@@ -37,7 +37,7 @@ struct TextView: View {
             
         }
         .padding()
-        .foregroundColor(Color(weather: .sun))
+        .foregroundColor(Color(weather: viewModel.weathColor))
         .onAppear {
             Task {
                 await viewModel.executeSearch(city: "Hamburg")

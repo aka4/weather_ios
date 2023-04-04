@@ -8,15 +8,9 @@
 import SwiftUI
 
 extension BackgroundView {
-    struct ViewModel {
-        let weatherCondition: Image
-        
-        init(weatherCond: WeatherImage) {
-            weatherCondition = Image(weather: weatherCond)
-        }
+    class ViewModel: ObservableObject {
+        @Published var weatherCondition: Image = Image(weather: .cloudy)
+    
     }
 }
 
-extension BackgroundView {
-    static let Mock = ViewModel(weatherCond: .thunder)
-}

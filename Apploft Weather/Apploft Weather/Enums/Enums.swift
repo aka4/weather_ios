@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Background Image Enum
 public enum WeatherImage: String {
     case thunder
     case rain
@@ -21,12 +22,24 @@ extension Image {
     }
 }
 
-
-
+//Textcolor Enum
 public enum WeatherColors: String {
     case thunder = "thunderColor"
     case clouds = "cloudyColor"
     case sun = "sunnyColor"
+}
+
+extension WeatherColors {
+    static func convertWeatherColor(input: String) -> WeatherColors {
+        switch input {
+        case "Thunderstorm":
+            return .thunder
+        case "Clear":
+            return .sun
+        default:
+            return .clouds
+        }
+    }
 }
 
 extension Color {
@@ -36,7 +49,7 @@ extension Color {
 }
 
 
-
+//Wind degree to direction Enum
 public enum WindDirection: String, CaseIterable {
     case n, nne, ne, ene, e, ese, se, sse, s, ssw, sw, wsw, w, wnw, nw, nnw
 }

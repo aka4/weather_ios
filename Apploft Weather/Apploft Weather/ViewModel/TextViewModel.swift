@@ -16,45 +16,24 @@ extension TextView {
         @Published var dayText = AttributedString(getDay().uppercased(), attributes: .init()
             .font(.system(size: 30))
         )
-        
         @Published var weatherdesc = AttributedString("")
-        
         @Published var cityT = AttributedString("")
-        
         @Published var temp = AttributedString("")
-        
         @Published var humidity = AttributedString("")
-        
         @Published var windSpeed = AttributedString("")
-        
         @Published var windDirection = AttributedString("")
+        @Published var weathColor : WeatherColors = .clouds
        
-        
-        func retrieveData() {
-            guard let weathUrl = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=53.551086&lon=9.993682&appid=2949250d0399e038f1e3ec0ccf6bc480&units=metric") else {
-                return
-            }
-            URLSession.shared.dataTask(with: weathUrl) { data, response, error in
-                let decoder = JSONDecoder()
-                if let dataB = data {
-                    do {
-                        self.weathResp = try decoder.decode(WeatherResponse.self, from: dataB)
-                    } catch {
-                        print(error.localizedDescription)
-                        print(self.weathResp ?? "Null")
-                    }
-                }
-            }
-            .resume()
-        }
         
         @MainActor func executeSearch(city: String) async {
             geoResp = await WeatherAPI.requestCoordinates(city: city)
+            
             guard geoResp != nil else {
                 return
             }
+            
             weathResp = await WeatherAPI.requestWeather(lat: geoResp?.first!.lat ?? 0, lon: geoResp?.first!.lon ?? 0)
-            //weathResp = await WeatherAPI.requestWeather(lat: 53.090, lon: 9.0)
+            
             
             weatherdesc = AttributedString(weathResp?.weather.first!.description.uppercased() ?? "Error", attributes: .init()
                 .font(.system(size:20))
@@ -79,6 +58,8 @@ extension TextView {
             windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: weathResp?.wind.deg ?? 0))", attributes: .init()
                 .font(.system(size: 16))
             )
+            
+            weathColor = WeatherColors.convertWeatherColor(input: weathResp?.weather.first!.main ?? "Error")
         }
         
         static func getDay() -> String {
