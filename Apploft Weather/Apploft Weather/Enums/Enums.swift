@@ -16,6 +16,23 @@ public enum WeatherImage: String {
     case cloudy
 }
 
+extension WeatherImage {
+    static func convertWeatherImage(input: String) -> WeatherImage {
+        switch input {
+        case "Thunderstorm":
+            return .thunder
+        case "Clear":
+            return .sunny
+        case "Snow":
+            return .snow
+        case "Drizzle", "Rain":
+            return .rain
+        default:
+            return .cloudy
+        }
+    }
+}
+
 extension Image {
     init(weather: WeatherImage) {
         self.init(weather.rawValue)

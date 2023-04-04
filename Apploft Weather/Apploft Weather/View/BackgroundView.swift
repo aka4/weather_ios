@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct BackgroundView: View {
-    let viewModel = ViewModel()
+    @ObservedObject var viewModel = ViewModel()
     var body: some View {
         viewModel.weatherCondition
             .resizable()
             .ignoresSafeArea()
             .scaledToFill()
+            .onAppear{
+                Task {
+                    await viewModel.executeSearch(city: "Hamburg")
+                }
+            }
     }
 }
 
