@@ -24,6 +24,7 @@ extension TextView {
         @Published var windDirection = AttributedString("Wind direction: N")
         @Published var weathColor : WeatherColors = .clouds
         @Published var weatherCondition: Image = Image(weather: .cloudy)
+        @Published var isLoaded = false
        
         
         @MainActor func executeSearch(city: String) async {
@@ -64,6 +65,8 @@ extension TextView {
         }
         
         @MainActor func executeCurrentLocation(coord: (Double, Double)?) async {
+            isLoaded = false
+            
             guard let locCoord = coord else {
                 print("Coords are nil")
                 return
@@ -99,6 +102,8 @@ extension TextView {
             weathColor = WeatherColors.convertWeatherColor(input: weathResp?.weather.first!.main ?? "Error")
             
             weatherCondition = Image(weather: WeatherImage.convertWeatherImage(input: weathResp?.weather.first!.main ?? "Error"))
+            
+            isLoaded = true
 
         }
 
