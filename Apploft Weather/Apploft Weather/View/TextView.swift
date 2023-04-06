@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TextView: View {
-    @ObservedObject var viewModel = ViewModel()
+    @ObservedObject var viewModel: ViewModel
     var body: some View {
         VStack{
             HStack(alignment: .top){
@@ -38,16 +38,11 @@ struct TextView: View {
         }
         .padding()
         .foregroundColor(Color(weather: viewModel.weathColor))
-        .onAppear {
-            Task {
-                await viewModel.executeSearch(city: "Hamburg")
-            }
-        }
     }
 }
 
 struct TextView_Previews: PreviewProvider {
     static var previews: some View {
-        TextView()
+        TextView(viewModel: TextView.ViewModel())
     }
 }

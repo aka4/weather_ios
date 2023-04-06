@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SquareView: View {
+    @ObservedObject var viewModel: TextView.ViewModel
     var body: some View {
         Color.white
             .aspectRatio(1, contentMode: .fit)
             .overlay(
-                TextView()
+                TextView(viewModel: viewModel)
             )
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .frame(maxHeight: .infinity, alignment: .bottom)
@@ -23,6 +24,6 @@ struct SquareView: View {
 
 struct SquareView_Previews: PreviewProvider {
     static var previews: some View {
-        SquareView()
+        SquareView(viewModel: TextView.ViewModel())
     }
 }

@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = TextView.ViewModel()
+    @StateObject private var locationHandler = LocationHandler()
     var body: some View {
         ZStack {
-            BackgroundView()
-            SquareView()
+            BackgroundView(viewModel: viewModel)
+            SquareView(viewModel: viewModel)
                 .padding(30)
+        }
+        .onChange(of: locationHandler.foundLocation) { newValue in
+            Task {
+                await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
+            }
         }
 
     }

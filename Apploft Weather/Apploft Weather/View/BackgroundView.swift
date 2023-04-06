@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct BackgroundView: View {
-    @ObservedObject var viewModel = ViewModel()
+    @ObservedObject var viewModel: TextView.ViewModel
     var body: some View {
-        viewModel.weatherCondition
-            .resizable()
-            .ignoresSafeArea()
-            .scaledToFill()
-            .onAppear{
-                Task {
-                    await viewModel.executeSearch(city: "Hamburg")
-                }
+        Color.clear
+            .overlay {
+                viewModel.weatherCondition
+                    .resizable()
+                    .scaledToFill()
             }
+            .ignoresSafeArea(edges: .all)
     }
 }
 
@@ -26,6 +24,6 @@ struct BackgroundView: View {
 
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackgroundView()
+        BackgroundView(viewModel: TextView.ViewModel())
     }
 }
