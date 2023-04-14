@@ -13,14 +13,16 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             BackgroundView(viewModel: viewModel)
-            if viewModel.isLoaded {
-                SquareView(viewModel: viewModel)
-                    .padding(30)
-            } else {
-                SquareView(viewModel: viewModel)
-                    .padding(30)
-                    .redacted(reason: .placeholder)
+            VStack {
+                SearchView(viewModel: viewModel)
+                if viewModel.isLoaded {
+                    SquareView(viewModel: viewModel)
+                } else {
+                    SquareView(viewModel: viewModel)
+                        .redacted(reason: .placeholder)
+                }
             }
+            .padding(30)
         }
         .onChange(of: locationHandler.foundLocation) { newValue in
             Task {

@@ -79,4 +79,12 @@ extension WindDirection {
     }
 }
 
+public enum WeatherError: Error {
+    case NetworkTimeout
+    case EmptyGeoResponse
+    case EmptyWeatherResponse
+    case EmptyCity
+    case LocationTimeout
+    case LocationPermissionNotGranted
+}
 

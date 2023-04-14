@@ -25,86 +25,121 @@ extension TextView {
         @Published var weathColor : WeatherColors = .clouds
         @Published var weatherCondition: Image = Image(weather: .cloudy)
         @Published var isLoaded = false
+        @Published var searchText = ""
        
         
-        @MainActor func executeSearch(city: String) async {
-            geoResp = await WeatherAPI.requestCoordinates(city: city)
-            guard geoResp != nil else {
+        @MainActor func executeSearch(city: String?) async {
+            isLoaded = false
+            
+            guard let safeCity = city else {
+                isLoaded = true
+                searchText = ""
                 return
             }
-            weathResp = await WeatherAPI.requestWeather(lat: geoResp?.first!.lat ?? 0, lon: geoResp?.first!.lon ?? 0)
             
+            let urlCity = safeCity.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            guard let safeUrlCity = urlCity else  {
+                isLoaded = true
+                searchText = ""
+                return
+            }
             
-            weatherdesc = AttributedString(weathResp?.weather.first!.description.uppercased() ?? "Error", attributes: .init()
+            geoResp = await WeatherAPI.requestCoordinates(city: safeUrlCity)
+            guard let safeGeoResp = geoResp else {
+                isLoaded = true
+                searchText = ""
+                return
+            }
+            guard let nonEmptResp = safeGeoResp.first else {
+                print("empty geo array")
+                isLoaded = true
+                searchText = ""
+                return
+            }
+            
+            weathResp = await WeatherAPI.requestWeather(lat: nonEmptResp.lat, lon: nonEmptResp.lon)
+            guard let safeWeathResp = weathResp else {
+                isLoaded = true
+                searchText = ""
+                return
+            }
+            
+            weatherdesc = AttributedString(safeWeathResp.weather.first!.description.uppercased(), attributes: .init()
                 .font(.system(size:20))
             )
             
-            cityT = AttributedString(weathResp?.name.uppercased() ?? "Error", attributes: .init()
+            cityT = AttributedString(safeWeathResp.name.uppercased(), attributes: .init()
                 .font(.system(size: 30, weight: .light))
             )
             
-            temp = AttributedString("\(Int(weathResp?.main.temp ?? 0))°", attributes: .init()
+            temp = AttributedString("\(Int(safeWeathResp.main.temp))°", attributes: .init()
                 .font(.system(size: 100))
             )
             
-            humidity = AttributedString("Humidity: \(weathResp?.main.humidity ?? 0)", attributes: .init()
+            humidity = AttributedString("Humidity: \(safeWeathResp.main.humidity)", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windSpeed = AttributedString("Wind speed: \(String(format: "%.2f", weathResp?.wind.speed ?? 0))", attributes: .init()
+            windSpeed = AttributedString("Wind speed: \(String(format: "%.2f", safeWeathResp.wind.speed))", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: weathResp?.wind.deg ?? 0))", attributes: .init()
+            windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: safeWeathResp.wind.deg))", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            weathColor = WeatherColors.convertWeatherColor(input: weathResp?.weather.first!.main ?? "Error")
+            weathColor = WeatherColors.convertWeatherColor(input: safeWeathResp.weather.first!.main)
             
-            weatherCondition = Image(weather: WeatherImage.convertWeatherImage(input: weathResp?.weather.first!.main ?? "Error"))
+            weatherCondition = Image(weather: WeatherImage.convertWeatherImage(input: safeWeathResp.weather.first!.main))
+            
+            isLoaded = true
+            searchText = ""
         }
         
         @MainActor func executeCurrentLocation(coord: (Double, Double)?) async {
             isLoaded = false
             
-            guard let locCoord = coord else {
+            guard let safeCoord = coord else {
+                isLoaded = true
                 print("Coords are nil")
                 return
             }
             
-            weathResp = await WeatherAPI.requestWeather(lat: locCoord.0, lon: locCoord.1)
+            weathResp = await WeatherAPI.requestWeather(lat: safeCoord.0, lon: safeCoord.1)
+            guard let safeWeathResp = weathResp else {
+                isLoaded = true
+                return
+            }
             
-            
-            weatherdesc = AttributedString(weathResp?.weather.first!.description.uppercased() ?? "Error", attributes: .init()
+            weatherdesc = AttributedString(safeWeathResp.weather.first!.description.uppercased(), attributes: .init()
                 .font(.system(size:20))
             )
             
-            cityT = AttributedString(weathResp?.name.uppercased() ?? "Error", attributes: .init()
+            cityT = AttributedString(safeWeathResp.name.uppercased(), attributes: .init()
                 .font(.system(size: 30, weight: .light))
             )
             
-            temp = AttributedString("\(Int(weathResp?.main.temp ?? 0))°", attributes: .init()
+            temp = AttributedString("\(Int(safeWeathResp.main.temp))°", attributes: .init()
                 .font(.system(size: 100))
             )
             
-            humidity = AttributedString("Humidity: \(weathResp?.main.humidity ?? 0)", attributes: .init()
+            humidity = AttributedString("Humidity: \(safeWeathResp.main.humidity)", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windSpeed = AttributedString("Wind speed: \(String(format: "%.2f", weathResp?.wind.speed ?? 0))", attributes: .init()
+            windSpeed = AttributedString("Wind speed: \(String(format: "%.2f", safeWeathResp.wind.speed))", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: weathResp?.wind.deg ?? 0))", attributes: .init()
+            windDirection = AttributedString("Wind direction: \(WindDirection.getDirection(deg: safeWeathResp.wind.deg))", attributes: .init()
                 .font(.system(size: 16))
             )
             
-            weathColor = WeatherColors.convertWeatherColor(input: weathResp?.weather.first!.main ?? "Error")
+            weathColor = WeatherColors.convertWeatherColor(input: safeWeathResp.weather.first!.main)
             
-            weatherCondition = Image(weather: WeatherImage.convertWeatherImage(input: weathResp?.weather.first!.main ?? "Error"))
+            weatherCondition = Image(weather: WeatherImage.convertWeatherImage(input: safeWeathResp.weather.first!.main))
             
             isLoaded = true
-
         }
 
         
