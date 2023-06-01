@@ -82,9 +82,21 @@ extension WindDirection {
 public enum WeatherError: Error {
     case NetworkTimeout
     case EmptyGeoResponse
-    case EmptyWeatherResponse
     case EmptyCity
+    case CityNil
     case LocationTimeout
     case LocationPermissionNotGranted
+    case URLDoesNotWork
 }
 
+extension Date {
+    
+    static func getDay() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en")
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfTheWeekString = dateFormatter.string(from: Date())
+        return dayOfTheWeekString
+    }
+    
+}
