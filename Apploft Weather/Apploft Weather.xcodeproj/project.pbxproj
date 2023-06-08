@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900FA4D72A2F516100A40808 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900FA4D62A2F516100A40808 /* ToastView.swift */; };
 		901124FB29D2D5DB00F52E90 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901124FA29D2D5DB00F52E90 /* WeatherAPI.swift */; };
 		901124FD29D2D95E00F52E90 /* GeoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901124FC29D2D95E00F52E90 /* GeoResponse.swift */; };
 		90268B5B29CDA13A00384291 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90268B5A29CDA13A00384291 /* SquareView.swift */; };
@@ -16,6 +17,7 @@
 		902A8C7029CCA75200A35F70 /* TextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C6F29CCA75200A35F70 /* TextViewModel.swift */; };
 		902A8C7429CCA7F000A35F70 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7329CCA7F000A35F70 /* Enums.swift */; };
 		902A8C7829CCB08500A35F70 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7729CCB08500A35F70 /* TextView.swift */; };
+		906062412A31D689000D2FF6 /* OverlayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906062402A31D689000D2FF6 /* OverlayExtension.swift */; };
 		907577E429DDAF8300D8311D /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907577E329DDAF8300D8311D /* LocationHandler.swift */; };
 		907DA41129C8A33300E39F52 /* Apploft_WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */; };
 		907DA41329C8A33300E39F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41229C8A33300E39F52 /* ContentView.swift */; };
@@ -28,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		900CFA4A29DC220100443E46 /* Apploft-Weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Apploft-Weather-Info.plist"; sourceTree = SOURCE_ROOT; };
+		900FA4D62A2F516100A40808 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		901124FA29D2D5DB00F52E90 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		901124FC29D2D95E00F52E90 /* GeoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoResponse.swift; sourceTree = "<group>"; };
 		90268B5A29CDA13A00384291 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		902A8C6F29CCA75200A35F70 /* TextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewModel.swift; sourceTree = "<group>"; };
 		902A8C7329CCA7F000A35F70 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		902A8C7729CCB08500A35F70 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		906062402A31D689000D2FF6 /* OverlayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayExtension.swift; sourceTree = "<group>"; };
 		907577E329DDAF8300D8311D /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		907DA40D29C8A33300E39F52 /* Apploft Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apploft Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apploft_WeatherApp.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				901124FA29D2D5DB00F52E90 /* WeatherAPI.swift */,
 				901124FC29D2D95E00F52E90 /* GeoResponse.swift */,
 				907577E329DDAF8300D8311D /* LocationHandler.swift */,
+				906062402A31D689000D2FF6 /* OverlayExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 				90268B5A29CDA13A00384291 /* SquareView.swift */,
 				90AAD2AF29E57520001093AC /* SearchView.swift */,
 				9089214E29FA8A5A00E659CC /* TestView.swift */,
+				900FA4D62A2F516100A40808 /* ToastView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906062412A31D689000D2FF6 /* OverlayExtension.swift in Sources */,
 				902A8C7029CCA75200A35F70 /* TextViewModel.swift in Sources */,
 				902A8C7829CCB08500A35F70 /* TextView.swift in Sources */,
 				902A8C6D29CC9E6300A35F70 /* BackgroundView.swift in Sources */,
@@ -226,6 +233,7 @@
 				901124FD29D2D95E00F52E90 /* GeoResponse.swift in Sources */,
 				907577E429DDAF8300D8311D /* LocationHandler.swift in Sources */,
 				90AAD2B029E57520001093AC /* SearchView.swift in Sources */,
+				900FA4D72A2F516100A40808 /* ToastView.swift in Sources */,
 				90268B5D29CDE6A700384291 /* WeatherResponse.swift in Sources */,
 				90268B5B29CDA13A00384291 /* SquareView.swift in Sources */,
 				901124FB29D2D5DB00F52E90 /* WeatherAPI.swift in Sources */,

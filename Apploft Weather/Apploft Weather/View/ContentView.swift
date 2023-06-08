@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = TextView.ViewModel()
     @StateObject private var locationHandler = LocationHandler()
+    @State private var showErr = true
     var body: some View {
         ZStack {
             BackgroundView(viewModel: viewModel)
@@ -29,6 +30,8 @@ struct ContentView: View {
                 await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
             }
         }
+        .overlay(overlayView: ToastView(viewModel: viewModel, show: $showErr), show: $showErr)
+        
 
     }
 }

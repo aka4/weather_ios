@@ -26,6 +26,7 @@ extension TextView {
         @Published var weatherCondition: Image = Image(weather: .cloudy)
         @Published var isLoaded = false
         @Published var searchText = ""
+        @Published var errorShow = true
        
         
         @MainActor func executeSearch(city: String?) async {
