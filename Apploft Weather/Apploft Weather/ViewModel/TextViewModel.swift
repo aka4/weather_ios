@@ -26,7 +26,8 @@ extension TextView {
         @Published var weatherCondition: Image = Image(weather: .cloudy)
         @Published var isLoaded = false
         @Published var searchText = ""
-        @Published var errorShow = true
+        @Published var errorShow = false
+        @Published var errorText = "Standard Error"
        
         
         @MainActor func executeSearch(city: String?) async {
@@ -34,38 +35,36 @@ extension TextView {
             var urlCity = ""
             do {
                urlCity = try checkCity(city: city)
-            } catch {
-                resetOnError()
-                print("empty string")
+            } catch let error {
+                actOnError(errorType: error)
                 return
             }
             
-            
             do {
                 geoResp = try await WeatherAPI.requestCoordinates(city: urlCity)
-            } catch {
-                resetOnError()
+            } catch let error {
+                actOnError(errorType: error)
                 return
             }
             
             guard let geoResp else {
-                resetOnError()
+                actOnError(errorType: WeatherError.CityNil)
                 return
             }
             
             do {
                 weathResp = try await WeatherAPI.requestWeather(lat: geoResp.lat, lon: geoResp.lon)
-            } catch {
-                resetOnError()
+            } catch let error {
+                actOnError(errorType: error)
                 return
             }
             
             guard let weathResp else {
-                resetOnError()
+                actOnError(errorType: WeatherError.UnknownError)
                 return
             }
             changeWeatherInfo(newWeather: weathResp)
-            resetOnError()
+            resetAfterSuccess()
         }
         
         @MainActor func executeCurrentLocation(coord: (Double, Double)?) async {
@@ -78,13 +77,13 @@ extension TextView {
             
             do {
                 weathResp = try await WeatherAPI.requestWeather(lat: coord.0, lon: coord.1)
-            } catch {
-                resetOnError()
+            } catch let error {
+                actOnError(errorType: error)
                 return
             }
             
             guard let weathResp else {
-                resetOnError()
+                actOnError(errorType: WeatherError.UnknownError)
                 return
             }
             
@@ -92,7 +91,35 @@ extension TextView {
         }
 
         
-        func resetOnError() {
+        func actOnError(errorType: Error) {
+            if let error = errorType as? WeatherError {
+                switch error {
+                case .UnknownError:
+                    errorText = "Unknown Error"
+                case .CityNil:
+                    errorText = "City Nil"
+                case .EmptyGeoResponse:
+                    errorText = "Empty Georesponse"
+                case .EmptyCity:
+                    errorText = "Empty search"
+                case .URLDoesNotWork:
+                    errorText = "URL somehow doesn't work"
+                case .LocationPermissionNotGranted:
+                    errorText = "You did not grant location permissions"
+                case .LocationTimeout:
+                    errorText = "Timeout during current location precess"
+                case .NetworkTimeout:
+                    errorText = "Network Timeout"
+                }
+            } else {
+                errorText = "weird ass error"
+            }
+            errorShow = true
+            isLoaded = true
+            searchText = ""
+        }
+        
+        func resetAfterSuccess() {
             isLoaded = true
             searchText = ""
         }

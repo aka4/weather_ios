@@ -14,6 +14,7 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var coordinates: (Double, Double)?
     @Published var foundLocation = false
+    @Published var errorFound = false
     
     override init() {
          super.init()
@@ -34,6 +35,7 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("why is this showing?")
+        errorFound = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -47,6 +49,7 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
         let longitude = currentLocation.coordinate.longitude
         coordinates = (latitude, longitude)
         foundLocation = true
+        errorFound = false
         locationManager.stopUpdatingLocation()
     }
     

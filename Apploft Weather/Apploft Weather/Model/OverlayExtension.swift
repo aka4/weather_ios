@@ -5,7 +5,6 @@
 //  Created by Atakan Özdemir on 08.06.23.
 //
 
-import Foundation
 import SwiftUI
 
 struct Overlay<T: View>: ViewModifier {
@@ -14,9 +13,10 @@ struct Overlay<T: View>: ViewModifier {
     
     func body(content: Content) -> some View {
         ZStack{
-            content
+            content.zIndex(0)
             if show {
-                overlayView
+                overlayView.zIndex(1)
+                    .transition(.move(edge: .top))
             }
         }
     }

@@ -79,7 +79,7 @@ extension WindDirection {
     }
 }
 
-public enum WeatherError: Error {
+public enum WeatherError: Error, CaseIterable {
     case NetworkTimeout
     case EmptyGeoResponse
     case EmptyCity
@@ -87,6 +87,9 @@ public enum WeatherError: Error {
     case LocationTimeout
     case LocationPermissionNotGranted
     case URLDoesNotWork
+    case UnknownError
+    
+    
 }
 
 extension Date {

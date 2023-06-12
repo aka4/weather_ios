@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = TextView.ViewModel()
     @StateObject private var locationHandler = LocationHandler()
-    @State private var showErr = true
+    @State private var showErr = false
     var body: some View {
         ZStack {
             BackgroundView(viewModel: viewModel)
+
             VStack {
                 SearchView(viewModel: viewModel)
                 if viewModel.isLoaded {
@@ -30,7 +31,16 @@ struct ContentView: View {
                 await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
             }
         }
-        .overlay(overlayView: ToastView(viewModel: viewModel, show: $showErr), show: $showErr)
+        .onChange(of: viewModel.errorShow || locationHandler.errorFound) { newValue in
+            withAnimation {
+                if viewModel.errorShow {
+                    showErr = viewModel.errorShow
+                } else {
+                    showErr = locationHandler.errorFound
+                }
+            }
+        }
+        .overlay(overlayView: ToastView(viewModel: viewModel, locationManager: locationHandler, show: $showErr), show: $showErr)
         
 
     }
