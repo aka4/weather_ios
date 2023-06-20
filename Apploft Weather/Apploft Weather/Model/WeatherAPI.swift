@@ -41,17 +41,23 @@ class WeatherAPI {
         
         let request = Request<GeoResponse>(url: secURL)
         print(request)
+        let response: GeoResponse?
         
         do {
-            let response = try await client.send(request).value
-            guard let firstElement = response.first else {
-                throw WeatherError.EmptyGeoResponse
-            }
-            return firstElement
+            response = try await client.send(request).value
+
         } catch {
             print(error.localizedDescription)
             print("Geofehler")
             throw WeatherError.NetworkTimeout
         }
+        guard let response else {
+            throw WeatherError.EmptyGeoResponse
+        }
+        guard let firstElm = response.first else {
+            throw WeatherError.EmptyGeoResponse
+        }
+        return firstElm
+
     }
 }

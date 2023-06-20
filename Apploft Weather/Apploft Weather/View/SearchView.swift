@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var viewModel: TextView.ViewModel
+    @ObservedObject var locationModel: LocationHandler
     var body: some View {
         HStack {
             TextField("Search city...", text: $viewModel.searchText)
@@ -31,12 +32,23 @@ struct SearchView: View {
                     .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 3)
                     .disabled(!viewModel.isLoaded)
             }
+            Button(action: {
+                Task {
+                    await viewModel.executeCurrentLocation(coord: locationModel.coordinates)
+                }
+            }) {
+                Image("locationButton")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 3)
+                    .disabled(!viewModel.isLoaded)
+            }
         }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(viewModel: TextView.ViewModel())
+        SearchView(viewModel: TextView.ViewModel(), locationModel: LocationHandler())
     }
 }

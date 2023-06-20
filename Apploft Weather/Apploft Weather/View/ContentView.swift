@@ -16,7 +16,7 @@ struct ContentView: View {
             BackgroundView(viewModel: viewModel)
 
             VStack {
-                SearchView(viewModel: viewModel)
+                SearchView(viewModel: viewModel, locationModel: locationHandler)
                 if viewModel.isLoaded {
                     SquareView(viewModel: viewModel)
                 } else {
