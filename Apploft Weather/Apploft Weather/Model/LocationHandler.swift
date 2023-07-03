@@ -30,12 +30,12 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
 
         } else {
             print("Error: Location access denied.")
+            errorFound = true
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("why is this showing?")
-        errorFound = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

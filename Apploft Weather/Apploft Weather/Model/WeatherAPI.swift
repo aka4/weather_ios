@@ -45,18 +45,20 @@ class WeatherAPI {
         
         do {
             response = try await client.send(request).value
-
+           
         } catch {
             print(error.localizedDescription)
             print("Geofehler")
             throw WeatherError.NetworkTimeout
         }
+        
         guard let response else {
-            throw WeatherError.EmptyGeoResponse
+            throw WeatherError.CityNil
         }
         guard let firstElm = response.first else {
             throw WeatherError.EmptyGeoResponse
         }
+        
         return firstElm
 
     }

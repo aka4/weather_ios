@@ -30,6 +30,19 @@ struct ToastView: View {
                 .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 6)
         }
         .frame(maxHeight: .infinity, alignment: .top)
+        .onAppear {
+            Task {
+                try await Task.sleep(nanoseconds: 3_000_000_000)
+                DispatchQueue.main.async {
+                    withAnimation {
+                        show = false
+                        viewModel.errorShow = false
+                        locationManager.errorFound = false
+                    }
+                }
+
+            }
+        }
         .offset(x: 0, y: -abs(offset.height))
         .gesture(
             DragGesture()
@@ -39,7 +52,7 @@ struct ToastView: View {
                 .onEnded { _ in
                     if abs(offset.height) > 20 {
                         withAnimation {
-                            self.show = false
+                            show = false
                             viewModel.errorShow = false
                             locationManager.errorFound = false
                         }
@@ -49,15 +62,6 @@ struct ToastView: View {
                 }
         )
         .padding(.horizontal, 20)
-        /*.onAppear {
-            DispatchQueue.main.async {
-                sleep(2)
-                withAnimation {
-                    self.show.toggle()
-                    viewModel.errorShow = self.show
-                }
-            }
-        }*/
     }
 }
 

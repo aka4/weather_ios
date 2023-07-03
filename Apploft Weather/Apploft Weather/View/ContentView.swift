@@ -35,8 +35,9 @@ struct ContentView: View {
             withAnimation {
                 if viewModel.errorShow {
                     showErr = viewModel.errorShow
-                } else {
+                } else if locationHandler.errorFound{
                     showErr = locationHandler.errorFound
+                    viewModel.errorText = "Location Permission Error"
                 }
             }
         }

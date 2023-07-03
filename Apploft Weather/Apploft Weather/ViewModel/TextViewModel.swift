@@ -70,7 +70,10 @@ extension TextView {
         @MainActor func executeCurrentLocation(coord: (Double, Double)?) async {
             isLoaded = false
             guard let coord else {
-                isLoaded = true
+                withAnimation {
+                    errorShow = true
+                    errorText = "Could not find current location"
+                }
                 print("Coords are nil")
                 return
             }
