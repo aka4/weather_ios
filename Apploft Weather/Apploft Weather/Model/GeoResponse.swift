@@ -12,6 +12,7 @@ struct GeoElement: Codable {
     let lat: Double
     let lon: Double
     let country: String
+    static let emptyElement = GeoElement(name: "", lat: 0, lon: 0, country: "")
 }
 
 typealias GeoResponse = [GeoElement]

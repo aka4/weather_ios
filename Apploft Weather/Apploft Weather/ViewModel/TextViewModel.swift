@@ -11,7 +11,7 @@ extension TextView {
     class ViewModel: ObservableObject {
         
         private var weathResp: WeatherResponse?
-        private var geoResp: GeoElement?
+        private var geoResp: GeoElement = .emptyElement
         
         @Published var dayText = AttributedString(Date.getDay().uppercased(), attributes: .init()
             .font(.system(size: 30))
@@ -34,37 +34,17 @@ extension TextView {
             isLoaded = false
             var urlCity = ""
             do {
-               urlCity = try checkCity(city: city)
-            } catch let error {
-                actOnError(errorType: error)
-                return
-            }
-            
-            do {
+                urlCity = try checkCity(city: city)
                 geoResp = try await WeatherAPI.requestCoordinates(city: urlCity)
-            } catch let error {
-                actOnError(errorType: error)
-                return
-            }
-            
-            guard let geoResp else {
-                actOnError(errorType: WeatherError.CityNil)
-                return
-            }
-            
-            do {
                 weathResp = try await WeatherAPI.requestWeather(lat: geoResp.lat, lon: geoResp.lon)
             } catch let error {
                 actOnError(errorType: error)
                 return
             }
-            
-            guard let weathResp else {
-                actOnError(errorType: WeatherError.UnknownError)
-                return
+            if let weathResp {
+                changeWeatherInfo(newWeather: weathResp)
+                resetAfterSuccess()
             }
-            changeWeatherInfo(newWeather: weathResp)
-            resetAfterSuccess()
         }
         
         @MainActor func executeCurrentLocation(coord: (Double, Double)?) async {
@@ -85,35 +65,15 @@ extension TextView {
                 return
             }
             
-            guard let weathResp else {
-                actOnError(errorType: WeatherError.UnknownError)
-                return
+            if let weathResp {
+                changeWeatherInfo(newWeather: weathResp)
             }
-            
-            changeWeatherInfo(newWeather: weathResp)
         }
 
         
         func actOnError(errorType: Error) {
             if let error = errorType as? WeatherError {
-                switch error {
-                case .UnknownError:
-                    errorText = "Unknown Error"
-                case .CityNil:
-                    errorText = "City Nil"
-                case .EmptyGeoResponse:
-                    errorText = "Empty Georesponse"
-                case .EmptyCity:
-                    errorText = "Empty search"
-                case .URLDoesNotWork:
-                    errorText = "URL somehow doesn't work"
-                case .LocationPermissionNotGranted:
-                    errorText = "You did not grant location permissions"
-                case .LocationTimeout:
-                    errorText = "Timeout during current location precess"
-                case .NetworkTimeout:
-                    errorText = "Network Timeout"
-                }
+                errorText = error.rawValue
             } else {
                 errorText = "weird ass error"
             }

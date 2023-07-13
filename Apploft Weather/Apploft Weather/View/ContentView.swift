@@ -17,21 +17,15 @@ struct ContentView: View {
 
             VStack {
                 SearchView(viewModel: viewModel, locationModel: locationHandler)
-                if viewModel.isLoaded {
-                    SquareView(viewModel: viewModel)
-                } else {
-                    SquareView(viewModel: viewModel)
-                        .redacted(reason: .placeholder)
-                }
+                SquareView(viewModel: viewModel)
+                    .redacted(reason: viewModel.isLoaded ? [] : .placeholder)
             }
             .padding(30)
         }
-        .onChange(of: locationHandler.foundLocation) { newValue in
-            Task {
+        .task(id: locationHandler.foundLocation) {
                 await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
-            }
         }
-        .onChange(of: viewModel.errorShow || locationHandler.errorFound) { newValue in
+        .onChange(of: viewModel.errorShow || locationHandler.errorFound) { _ in
             withAnimation {
                 if viewModel.errorShow {
                     showErr = viewModel.errorShow

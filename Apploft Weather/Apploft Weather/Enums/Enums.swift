@@ -79,7 +79,7 @@ extension WindDirection {
     }
 }
 
-public enum WeatherError: Error, CaseIterable {
+public enum WeatherError: String, Error, CaseIterable {
     case NetworkTimeout
     case EmptyGeoResponse
     case EmptyCity
