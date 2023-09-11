@@ -103,3 +103,8 @@ extension Date {
     }
     
 }
+
+public enum FocusField: Equatable, Hashable {
+    case searchField
+    case searchNoField
+}

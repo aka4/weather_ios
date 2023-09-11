@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900F15702AA08FB6002A6929 /* PopoverListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900F156F2AA08FB6002A6929 /* PopoverListView.swift */; };
 		900FA4D72A2F516100A40808 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900FA4D62A2F516100A40808 /* ToastView.swift */; };
 		901124FB29D2D5DB00F52E90 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901124FA29D2D5DB00F52E90 /* WeatherAPI.swift */; };
 		901124FD29D2D95E00F52E90 /* GeoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901124FC29D2D95E00F52E90 /* GeoResponse.swift */; };
+		902318262AA76C5700E37F6B /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902318252AA76C5700E37F6B /* DataController.swift */; };
 		90268B5B29CDA13A00384291 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90268B5A29CDA13A00384291 /* SquareView.swift */; };
 		90268B5D29CDE6A700384291 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90268B5C29CDE6A700384291 /* WeatherResponse.swift */; };
 		902A8C6829CC76FC00A35F70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 902A8C6A29CC76FC00A35F70 /* Localizable.strings */; };
@@ -18,6 +20,7 @@
 		902A8C7429CCA7F000A35F70 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7329CCA7F000A35F70 /* Enums.swift */; };
 		902A8C7829CCB08500A35F70 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8C7729CCB08500A35F70 /* TextView.swift */; };
 		906062412A31D689000D2FF6 /* OverlayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906062402A31D689000D2FF6 /* OverlayExtension.swift */; };
+		90650C802AA5D21100CF442F /* CityList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90650C7E2AA5D21100CF442F /* CityList.xcdatamodeld */; };
 		907577E429DDAF8300D8311D /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907577E329DDAF8300D8311D /* LocationHandler.swift */; };
 		907DA41129C8A33300E39F52 /* Apploft_WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */; };
 		907DA41329C8A33300E39F52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907DA41229C8A33300E39F52 /* ContentView.swift */; };
@@ -29,9 +32,11 @@
 
 /* Begin PBXFileReference section */
 		900CFA4A29DC220100443E46 /* Apploft-Weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Apploft-Weather-Info.plist"; sourceTree = SOURCE_ROOT; };
+		900F156F2AA08FB6002A6929 /* PopoverListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverListView.swift; sourceTree = "<group>"; };
 		900FA4D62A2F516100A40808 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		901124FA29D2D5DB00F52E90 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		901124FC29D2D95E00F52E90 /* GeoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoResponse.swift; sourceTree = "<group>"; };
+		902318252AA76C5700E37F6B /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		90268B5A29CDA13A00384291 /* SquareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
 		90268B5C29CDE6A700384291 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		902A8C6929CC76FC00A35F70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -41,6 +46,7 @@
 		902A8C7329CCA7F000A35F70 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		902A8C7729CCB08500A35F70 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		906062402A31D689000D2FF6 /* OverlayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayExtension.swift; sourceTree = "<group>"; };
+		90650C7F2AA5D21100CF442F /* CityList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CityList.xcdatamodel; sourceTree = "<group>"; };
 		907577E329DDAF8300D8311D /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		907DA40D29C8A33300E39F52 /* Apploft Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apploft Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907DA41029C8A33300E39F52 /* Apploft_WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apploft_WeatherApp.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				901124FC29D2D95E00F52E90 /* GeoResponse.swift */,
 				907577E329DDAF8300D8311D /* LocationHandler.swift */,
 				906062402A31D689000D2FF6 /* OverlayExtension.swift */,
+				90650C7E2AA5D21100CF442F /* CityList.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 				90268B5A29CDA13A00384291 /* SquareView.swift */,
 				90AAD2AF29E57520001093AC /* SearchView.swift */,
 				900FA4D62A2F516100A40808 /* ToastView.swift */,
+				900F156F2AA08FB6002A6929 /* PopoverListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				902A8C6F29CCA75200A35F70 /* TextViewModel.swift */,
+				902318252AA76C5700E37F6B /* DataController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,10 +232,13 @@
 			files = (
 				906062412A31D689000D2FF6 /* OverlayExtension.swift in Sources */,
 				902A8C7029CCA75200A35F70 /* TextViewModel.swift in Sources */,
+				90650C802AA5D21100CF442F /* CityList.xcdatamodeld in Sources */,
 				902A8C7829CCB08500A35F70 /* TextView.swift in Sources */,
 				902A8C6D29CC9E6300A35F70 /* BackgroundView.swift in Sources */,
 				907DA41329C8A33300E39F52 /* ContentView.swift in Sources */,
 				907DA41129C8A33300E39F52 /* Apploft_WeatherApp.swift in Sources */,
+				902318262AA76C5700E37F6B /* DataController.swift in Sources */,
+				900F15702AA08FB6002A6929 /* PopoverListView.swift in Sources */,
 				901124FD29D2D95E00F52E90 /* GeoResponse.swift in Sources */,
 				907577E429DDAF8300D8311D /* LocationHandler.swift in Sources */,
 				90AAD2B029E57520001093AC /* SearchView.swift in Sources */,
@@ -377,7 +389,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Apploft Weather/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HN2943EM85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Apploft-Weather-Info.plist";
@@ -388,7 +400,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,7 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Apploft Weather/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HN2943EM85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Apploft-Weather-Info.plist";
@@ -421,7 +433,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,6 +488,19 @@
 			productName = Get;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		90650C7E2AA5D21100CF442F /* CityList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				90650C7F2AA5D21100CF442F /* CityList.xcdatamodel */,
+			);
+			currentVersion = 90650C7F2AA5D21100CF442F /* CityList.xcdatamodel */;
+			path = CityList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 907DA40529C8A33300E39F52 /* Project object */;
 }
