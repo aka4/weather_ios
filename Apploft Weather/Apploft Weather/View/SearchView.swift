@@ -32,7 +32,7 @@ struct SearchView: View {
                     isPresented: $show,
                     attachmentAnchor: .point(.bottom),
                     content: {
-                    PopoverListView()
+                        PopoverListView(viewModel: viewModel)
                             .frame(minWidth: 200, minHeight: 400)
                 })
             Button(action: {

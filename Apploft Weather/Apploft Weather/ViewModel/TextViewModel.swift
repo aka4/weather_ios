@@ -26,6 +26,7 @@ extension TextView {
         @Published var weatherCondition: Image = Image(weather: .cloudy)
         @Published var isLoaded = false
         @Published var searchText = ""
+        @Published var lastSuccessfulSearch = ""
         @Published var errorShow = false
         @Published var errorText = "Standard Error"
        
@@ -43,6 +44,7 @@ extension TextView {
             }
             if let weathResp {
                 changeWeatherInfo(newWeather: weathResp)
+                lastSuccessfulSearch = searchText
                 resetAfterSuccess()
             }
         }
