@@ -43,6 +43,7 @@ extension TextView {
                 return
             }
             if let weathResp {
+                print("\(geoResp.name) , \(weathResp.name)")
                 changeWeatherInfo(newWeather: weathResp)
                 lastSuccessfulSearch = searchText
                 resetAfterSuccess()

@@ -41,7 +41,7 @@ struct PopoverListView: View {
         }
         .onChange(of: viewModel.lastSuccessfulSearch) { _ in
             if citiesData.count >= 5 {
-                while(citiesData.count >= 5) {
+                while(citiesData.count > 5) {
                     removeOldestCity()
                 }
             }
