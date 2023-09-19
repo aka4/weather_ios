@@ -22,9 +22,11 @@ struct ContentView: View {
             }
             .padding(30)
         }
-        .task(id: locationHandler.foundLocation) {
-            if locationHandler.foundLocation == true {
-                await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
+        .onChange(of: locationHandler.foundLocation) { foundLocation in
+            Task {
+                if foundLocation == true {
+                    await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
+                }
             }
         }
         .onChange(of: viewModel.errorShow || locationHandler.errorFound) { _ in

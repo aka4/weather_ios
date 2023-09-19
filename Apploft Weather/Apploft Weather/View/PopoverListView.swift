@@ -21,12 +21,13 @@ struct PopoverListView: View {
                             .onTapGesture {
                                 viewModel.searchText = city.name ?? ""
                             }
+                            .frame(height: 20)
                     }
                     .onDelete(perform: removeCity)
                     .listRowBackground(Color.clear)
                 }
             }
-            Button("Add") {
+            /*Button("Add") {
                 let cityNames = ["Hamburg", "Berlin", "New York", "Tokyo", "Istanbul"]
                 let chosenCityName = cityNames.randomElement()!
                 let cityTest = City(context: moc)
@@ -37,7 +38,7 @@ struct PopoverListView: View {
             }
             Button("Remove oldest") {
                 removeOldestCity()
-            }
+            }*/
         }
         .onChange(of: viewModel.lastSuccessfulSearch) { _ in
             if citiesData.count >= 5 {

@@ -33,7 +33,7 @@ struct SearchView: View {
                     attachmentAnchor: .point(.bottom),
                     content: {
                         PopoverListView(viewModel: viewModel)
-                            .frame(minWidth: 200, minHeight: 400)
+                            .frame(minWidth: 200, minHeight: 300)
                 })
             Button(action: {
                 Task {
