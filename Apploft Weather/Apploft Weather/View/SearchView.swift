@@ -15,7 +15,7 @@ struct SearchView: View {
     
     var body: some View {
         HStack {
-            TextField("Search city...", text: $viewModel.searchText)
+            TextField("", text: $viewModel.searchText, prompt: Text("Search city...").foregroundColor(Color("placeholderColor")))
                 .focused($focusField, equals: .searchField)
                 .onChange(of: focusField) { newValue in
                     show = newValue == .searchField
@@ -25,9 +25,9 @@ struct SearchView: View {
                 .foregroundColor(Color(weather: viewModel.weathColor))
                 .background {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white)
+                        .fill(Color("objectColor"))
+                        .shadow(color: Color("objectColor").opacity(0.5), radius: 0, y: 3)
                 }
-                .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 5)
                 .popover(
                     isPresented: $show,
                     attachmentAnchor: .point(.bottom),

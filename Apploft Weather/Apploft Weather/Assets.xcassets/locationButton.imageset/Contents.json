@@ -3,6 +3,16 @@
     {
       "filename" : "location.circle.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "location.circle 1.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

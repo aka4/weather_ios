@@ -3,6 +3,16 @@
     {
       "filename" : "paperplane.fill.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "paperplane.fill 1.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

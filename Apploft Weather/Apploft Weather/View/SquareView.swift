@@ -10,14 +10,14 @@ import SwiftUI
 struct SquareView: View {
     @ObservedObject var viewModel: TextView.ViewModel
     var body: some View {
-        Color.white
+        Color("objectColor")
             .aspectRatio(1, contentMode: .fit)
             .overlay(
                 TextView(viewModel: viewModel)
             )
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .frame(maxHeight: .infinity, alignment: .bottom)
-            .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 10)
+            .shadow(color: Color("objectColor").opacity(0.5), radius: 0, y: 10)
             
     }
 }

@@ -12,7 +12,7 @@ extension Image {
         self
             .resizable()
             .frame(width: 30, height: 30)
-            .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 3)
+            .shadow(color: Color("objectColor").opacity(0.5), radius: 0, y: 2)
             .disabled(!isLoaded)
     }
 }
