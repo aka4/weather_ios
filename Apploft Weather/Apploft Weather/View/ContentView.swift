@@ -22,8 +22,12 @@ struct ContentView: View {
             }
             .padding(30)
         }
-        .task(id: locationHandler.foundLocation) {
-                await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
+        .onChange(of: locationHandler.foundLocation) { foundLocation in
+            Task {
+                if foundLocation == true {
+                    await viewModel.executeCurrentLocation(coord: locationHandler.coordinates)
+                }
+            }
         }
         .onChange(of: viewModel.errorShow || locationHandler.errorFound) { _ in
             withAnimation {
@@ -45,5 +49,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.managedObjectContext, DataController().container.viewContext)
     }
 }

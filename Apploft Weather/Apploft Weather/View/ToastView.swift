@@ -25,9 +25,9 @@ struct ToastView: View {
         .padding(.horizontal, 24)
         .frame(maxHeight: 50)
         .background {
-            Color.white
+            Color("objectColor")
                 .clipShape(Capsule())
-                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 6)
+                .shadow(color: Color("reverseObjectColor").opacity(0.5), radius: 5, x: 0, y: 3)
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .onAppear {

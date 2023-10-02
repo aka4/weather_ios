@@ -10,27 +10,38 @@ import SwiftUI
 struct SearchView: View {
     @ObservedObject var viewModel: TextView.ViewModel
     @ObservedObject var locationModel: LocationHandler
+    @FocusState private var focusField: FocusField?
+    @State private var show: Bool = false
+    
     var body: some View {
         HStack {
-            TextField("Search city...", text: $viewModel.searchText)
+            TextField("", text: $viewModel.searchText, prompt: Text("Search city...").foregroundColor(Color("placeholderColor")))
+                .focused($focusField, equals: .searchField)
+                .onChange(of: focusField) { newValue in
+                    show = newValue == .searchField
+                }
                 .padding(.vertical, 5)
                 .padding(.horizontal, 10)
                 .foregroundColor(Color(weather: viewModel.weathColor))
                 .background {
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white)
+                        .fill(Color("objectColor"))
+                        .shadow(color: Color("objectColor").opacity(0.5), radius: 0, y: 3)
                 }
-                .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 5)
+                .popover(
+                    isPresented: $show,
+                    attachmentAnchor: .point(.bottom),
+                    content: {
+                        PopoverListView(viewModel: viewModel)
+                            .frame(minWidth: 200, minHeight: 300)
+                })
             Button(action: {
                 Task {
                     await viewModel.executeSearch(city: viewModel.searchText)
                 }
             }) {
                 Image("sendButton")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 3)
-                    .disabled(!viewModel.isLoaded)
+                    .buttonImageModifier(isLoaded: viewModel.isLoaded)
             }
             Button(action: {
                 Task {
@@ -38,10 +49,7 @@ struct SearchView: View {
                 }
             }) {
                 Image("locationButton")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .shadow(color: .init(white: 1, opacity: 0.5), radius: 0, y: 3)
-                    .disabled(!viewModel.isLoaded)
+                    .buttonImageModifier(isLoaded: viewModel.isLoaded)
             }
         }
     }

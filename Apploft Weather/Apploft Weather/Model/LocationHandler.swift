@@ -28,8 +28,9 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, ObservableObject {
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
             locationManager.startUpdatingLocation()
 
-        } else {
+        } else if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
             print("Error: Location access denied.")
+            print(locationManager.authorizationStatus.rawValue)
             errorFound = true
         }
     }
